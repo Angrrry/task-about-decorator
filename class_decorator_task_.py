@@ -11,7 +11,12 @@ If class already has attribute with such name:
 """
 def classdecorator(**kwargs):
     def wrapper(cls):
-        ...
+        for key, value in kwargs.items():
+            if getattr(cls,key, None):
+                ...
+            else:
+                setattr(cls,key,value)
+
 
     return wrapper
 if __name__ == "__main__":
