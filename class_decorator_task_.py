@@ -9,7 +9,6 @@ Else:
 If class already has attribute with such name:
     do not replace original one but print a warning with module warnings
 """
-import builtins
 import warnings
 
 
@@ -24,11 +23,12 @@ def classdecorator(**kwargs):
                 else:
                     raise Exception("value is not a function nor string")
         return cls
+
     return wrapper
 
 
 if __name__ == "__main__":
-    @classdecorator(a="s", w=lambda: 2, s=lambda x:x+2)
+    @classdecorator(a="s", w=lambda: 2, s=lambda x: x + 2)
     class A:
         w = "sss"
 
