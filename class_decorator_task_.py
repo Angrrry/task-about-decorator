@@ -18,9 +18,13 @@ def classdecorator(**kwargs):
             if getattr(cls, key, None):
                 warnings.warn(f"{key} already in {cls.__name__}")
             else:
-                if isinstance(value, str) or callable(value):
+                if isinstance(value, str):
                     setattr(cls, key, value)
+                elif callable(value):
+                    setattr(cls, key, staticmethod(value))
                 else:
+                    print(key, value)
+                    print(type(value))
                     raise Exception("value is not a function nor string")
         return cls
 
@@ -36,3 +40,5 @@ if __name__ == "__main__":
     print(A.w)
     print(A.a)
     print(A.s(2))
+    a = A()
+    print(a.s(2))
